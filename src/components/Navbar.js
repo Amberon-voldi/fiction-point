@@ -5,7 +5,7 @@ const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <nav className="bg-white border-gray-200 dark:bg-black dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           {/* <img src="/logo.svg" className="h-8" alt={`${process.env.NEXT_PUBLIC_BRAND_NAME} Logo`} /> */}
@@ -41,9 +41,14 @@ const NavBar = () => {
               {isDropdownOpen && (
                 <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded z-10">
                   <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                  <li>
+                      <Link href="/novels" className="block text-black px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        Comics
+                      </Link>
+                    </li>
                     <li>
                       <Link href="/manhwas" className="block text-black px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                        Manhwas
+                        Webtoons
                       </Link>
                     </li>
                     <li>
