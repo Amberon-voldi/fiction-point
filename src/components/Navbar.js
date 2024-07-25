@@ -3,7 +3,12 @@ import Link from 'next/link';
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [theme, setTheme] = useState('light');
 
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+    document.body.className = theme === 'light' ? 'dark-theme' : 'light-theme';
+  };
   return (
     <nav className="bg-white border-gray-200 dark:bg-black dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -11,6 +16,7 @@ const NavBar = () => {
           {/* <img src="/logo.svg" className="h-8" alt={`${process.env.NEXT_PUBLIC_BRAND_NAME} Logo`} /> */}
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{process.env.NEXT_PUBLIC_BRAND_NAME}</span>
         </Link>
+
         <button
           data-collapse-toggle="navbar"
           type="button"
@@ -25,7 +31,7 @@ const NavBar = () => {
           </svg>
         </button>
         <div className={`${isDropdownOpen ? '' : 'hidden'} w-full md:block md:w-auto`} id="navbar">
-          <ul className="flex flex-col items-center font-medium p-4 md:p-0 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col items-center font-medium p-4 md:p-0 border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
 
             <li className="relative">
               <button
@@ -41,7 +47,7 @@ const NavBar = () => {
               {isDropdownOpen && (
                 <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded z-10">
                   <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-                  <li>
+                    <li>
                       <Link href="/novels" className="block text-black px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                         Comics
                       </Link>
@@ -69,8 +75,24 @@ const NavBar = () => {
               <button className="py-2 px-4 text-gray-900 bg-white rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-white dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500">
                 Login
               </button>
+
+            </li>
+            <li>
+              <button onClick={toggleTheme} className="theme-switcher">
+                {theme === 'light' ? (
+                  <svg className="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.364 6.364l-1.414-1.414M6.364 6.364L4.95 7.778m12.728 0l1.414 1.414M6.364 17.636l1.414 1.414M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                  </svg>
+                )}
+
+              </button>
             </li>
           </ul>
+
         </div>
       </div>
     </nav>
